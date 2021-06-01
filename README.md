@@ -1,24 +1,30 @@
-# vue-electron-app
+Install Keycloak in Docker
+```
+docker-compose up -d
+```
 
-## Project setup
+
+Build the Vue.js project
+```
+cd frontend
+```
+
+
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+
+Build for Development:
 ```
-yarn serve
+yarn electron:serve
 ```
 
-### Compiles and minifies for production
+Build for Prod:
 ```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
+yarn eletron:build 
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Login:
+
+The keyclock config includes example users from Planet Express (the username is the same as the password, e.g. fry/fry and bender/bender).

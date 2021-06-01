@@ -1,0 +1,20 @@
+version: "3"
+services:
+
+  acme_xyz_keycloak:
+    image: jboss/keycloak:11.0.3
+    environment:
+      DB_VENDOR: H2
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      KEYCLOAK_IMPORT: /tmp/acme-realm.json
+    ports:
+      - 8081:8080
+    command: ["-Dkeycloak.profile.feature.upload_scripts=enabled"]
+    volumes:
+      - acme_xyz_keycloak_db:/opt/jboss/keycloak/standalone/data
+      - ./config/keycloak/acme-realm.json:/tmp/acme-realm.json
+    restart: unless-stopped
+
+volumes:
+  acme_xyz_keycloak_db:
