@@ -17,11 +17,3 @@ new Vue({
   vuetify,
   render: h => h(App)
 }).$mount('#app')
-
-setTimeout(function(){ 
-  // Electron messes up the app:// url after 302 redirect from Keycloak
-  if (location.href.startsWith("app://./app:/")) {
-    const newUrl = location.href.replace("app://./app:/","app://./");
-    history.replaceState({}, null, newUrl);
-  }
-}, 1000);

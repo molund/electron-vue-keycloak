@@ -49,6 +49,14 @@ const authGuard = async (to, from, next) => {
   next();
 };
 
+router.onReady(() => { 
+  // Electron messes up the app:// url after 302 redirect from Keycloak
+  if (location.href.startsWith("app://./app:/")) {
+    const tidyHref = location.href.replace("app://./app:/", "app://./");
+    history.replaceState(window.history.state, null, tidyHref);
+  }
+})
+
 router.beforeEach(authGuard);
 
 export default router
