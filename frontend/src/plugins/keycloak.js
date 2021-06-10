@@ -137,10 +137,6 @@ export default {
       refresh() {
         return keycloak.updateToken(-1);
       },
-      register(redirectUri) {
-        keycloak.init({ ...KEYCLOAK_INIT_OPTIONS });
-        return keycloak.register({ redirectUri });
-      }
     };
 
     // Make custom keycloak adapter available on the Vue instance
