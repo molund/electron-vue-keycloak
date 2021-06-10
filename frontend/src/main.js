@@ -9,7 +9,7 @@ import '@mdi/font/css/materialdesignicons.css'
 import KeycloakPlugin from "./plugins/keycloak";
 
 Vue.config.productionTip = false
-Vue.use(KeycloakPlugin, { store, router });
+Vue.use(KeycloakPlugin, { store });
 
 new Vue({
   router,

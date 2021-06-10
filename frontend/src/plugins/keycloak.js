@@ -28,7 +28,7 @@ const KEYCLOAK_LOGIN_TIMEOUT = 10000;
 let installed = false;
 
 export default {
-  install(Vue, { store, router }) {
+  install(Vue, { store }) {
     if (installed) {
       return;
     }
@@ -37,13 +37,8 @@ export default {
     let refreshInterval = null;
     const keycloak = Keycloak(KEYCLOAK_SERVER_OPTIONS);
 
-    /**
-     * Returns the absolute URL given a Vue Router route object.
-     * @param {Object} route - Vue Router route object
-     * @returns {string} The absolute URL of the route's path
-     */
-    function uriFromRoute(route) {
-      return `${window.location.origin}${route.fullPath}`;
+    function getRedirectUri() {
+      return `${window.location.origin}/index.html`;
     }
 
     function updateKeycloakData(isAuthenticated = false) {
@@ -70,7 +65,7 @@ export default {
     keycloak.onAuthRefreshSuccess = () => updateKeycloakData(true);
     keycloak.onAuthRefreshError = () => {
       updateKeycloakData(false);
-      keycloak.login({ redirectUri: uriFromRoute(router.currentRoute) });
+      keycloak.login({ redirectUri: getRedirectUri() });
     };
     keycloak.onAuthLogout = () => {
       updateKeycloakData(false);
@@ -81,7 +76,7 @@ export default {
     };
     keycloak.onAuthError = () => {
       updateKeycloakData(false);
-      keycloak.login({ redirectUri: uriFromRoute(router.currentRoute) });
+      keycloak.login({ redirectUri: getRedirectUri() });
     };
     keycloak.onTokenExpired = () => {
       // We shouldn't get to tokenExpired because to the timer, but if we do,
