@@ -10,7 +10,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    alias: ['/state*', ''],
+    alias: '',
     meta: { authenticated: true }
   },
 ]

@@ -16,7 +16,9 @@ const KEYCLOAK_INIT_OPTIONS = {
   // Turn on PKCE
   pkceMethod: "S256",
   // "check-sso" will log us in silently, if the user is already authenticated
-  onLoad: "check-sso"
+  onLoad: "check-sso",
+  // settings a responseMode to "query" will prevent or "#" from being added to URI
+  responseMode: "query"
 };
 
 // Check for token expiry ever 10s
