@@ -88,6 +88,8 @@
         </v-row>
       </v-col>
     </v-row>
+    <br>
+    <a href="#" @click="logout()">logout</a>
   </v-container>
 </template>
 
@@ -147,5 +149,10 @@
         },
       ],
     }),
+    methods: {
+      logout() {
+        this.$keycloak.logout()
+      }
+    }
   }
 </script>
